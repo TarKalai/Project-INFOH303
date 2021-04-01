@@ -1,4 +1,11 @@
 import csv
+import psycopg2
+
+DB_NAME = "rdqxhttk"
+DB_USER = "rdqxhttk"
+DB_PASS = "iAs4oaszEn08NcQhuZNODLXpdqCid6yd"
+DB_HOST = "hattie.db.elephantsql.com"
+DB_PORT = "5432"
 
 climateFile = "data_csv_files/climate.csv"
 
@@ -10,10 +17,33 @@ def open_folder_csv(file, list):
             list.append(line)
 
 
+def connect_to_db():
+    try:
+        conn = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT)
+        print("Database connected successfully")
+        return conn
+    except:
+        print("An error has occured while trying to connect to the database.")
+
+
+def isolate_name_of_file(filename):
+    name_of_table = ""
+    a = 0
+    b = 0
+    for i in range(len(filename)):
+        if filename[i] == '/':
+            a = i + 1
+        elif filename[i] == '.':
+            b = i
+    name_of_table = filename[a:b]
+    return name_of_table
+
+
 def start_project():
+    conn = connect_to_db()
     list_of_climates = []
     open_folder_csv(climateFile, list_of_climates)
-    print(list_of_climates)
+
 
 
 start_project()
