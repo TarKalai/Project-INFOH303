@@ -14,7 +14,7 @@ print("Database connected successfully")
 
 cur = conn.cursor()
 
-cur.execute("SELECT ID, NAME, EMAIL FROM Employe")
+cur.execute("SELECT ID, NAME, EMAIL ROM Employe")
 
 rows = cur.fetchall()
 
