@@ -10,3 +10,6 @@ Base de donnée pour les données du Covid-19.
   avec la DB.
 
 - Utilisation de la librairie csv pour la lecture des données tirées des .csv
+
+###A changer pour faire fonctionner le code :
+- Vous devez modifier le path des files .csv en un path absolu qui vous est propre.
