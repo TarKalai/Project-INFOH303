@@ -14,32 +14,38 @@ print("Database connected successfully")
 
 cur = conn.cursor()
 cur.execute("""
-
+         
 CREATE TABLE Country (
-iso_code VARCHAR (3) PRIMARY KEY,
-continent TEXT NOT NULL,
-region TEXT NOT NULL,
-name TEXT NOT NULL,
-hdi FLOAT,
+iso_code CHAR (3) PRIMARY KEY,
+continent VARCHAR (16) NOT NULL,
+region VARCHAR (24) NOT NULL,
+name VARCHAR (36) NOT NULL,
+hdi DECIMAL(1,3) NOT NULL,
 population INT NOT NULL,
 area_sq_ml INT NOT NULL,
-climate_id INT
-)
+first_vaccination_date DATE,
+climate_id TINYINT
+);
 
 CREATE TABLE Climate (
+id TINYINT PRIMARY KEY,
+description VARCHAR (100) NOT NULL
+);
+
+CREATE TABLE CountryVacc (
+iso_code CHAR (3) NOT NULL,
+vaccine_name VARCHAR (22) NOT NULL,
+CONSTRAINT CompKey_code_name PRIMARY KEY (iso_code,vaccine_name)
+);
+
+CREATE TABLE Stat_Hospitalisation (
 id INT PRIMARY KEY,
-description TEXT NOT NULL,
-)
-
-CREATE TABLE Cure (
-c_iso_code VARCHAR (3) PRIMARY KEY,
 date DATE NOT NULL,
-)
+icu_patients INT NOT NULL,
+hosp_patients INT NOT NULL,
+epidemiologist_source CHAR (36) NOT NULL
+);
 
-CREATE TABLE CureVacc ( neeeddddd toooo reworrrk "two KEY"
-c_iso_code VARCHAR (3) PRIMARY KEY,
-vaccines TEXT NOT NULL,
-)
 
 """)
 

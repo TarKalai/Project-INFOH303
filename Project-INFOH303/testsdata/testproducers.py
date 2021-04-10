@@ -19,7 +19,7 @@ def start_project():
         if list_of_producers[i + 1][2] == "":
             print("Bonjour il y a un probleme")
         else:
-            print(list_of_producers[i+1][2])
+            print(list_of_producers[i + 1][2])
 
 
 

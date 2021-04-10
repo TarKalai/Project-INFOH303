@@ -2,7 +2,7 @@ import csv
 import pkg_resources
 
 path = "data_csv_files/country.csv"
-countryFile = "D:\\documents\\BA3 Polytechnique\\INFO-H303\\Projet_partie_2\\Project-INFOH303\\data_csv_files\\country.csv"
+climateFile = "D:\\documents\\BA3 Polytechnique\\INFO-H303\\Projet_partie_2\\Project-INFOH303\\data_csv_files\\climate.csv"
 #mettre un path absolu
 
 def open_folder_csv(file, list):
@@ -15,12 +15,12 @@ def open_folder_csv(file, list):
 
 def start_project():
     list_of_country = []
-    open_folder_csv(countryFile, list_of_country)
+    open_folder_csv(climateFile, list_of_country)
     for i in range(len(list_of_country)-1):
-        if list_of_country[i + 1][4] == "":
+        if list_of_country[i + 1][1] == "":
             print("Bonjour il y a un probleme")
         else:
-            print(list_of_country[i+1][4])
+            print(len(list_of_country[i+1][1]))
 
 
 
