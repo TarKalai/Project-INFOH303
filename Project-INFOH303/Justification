@@ -1,0 +1,22 @@
+
+					Justification De L'Implémentation Du Code.
+
+
+ENTITE Country :
+
+	- iso_code : Il a été décidé que ce serait un CHAR de taille 3 car les iso_code sont toujours une combinaison de 3 caractères (taille fixe).
+
+	- continent VARCHAR(16) : La taille maximale du nom d'un continent est de 13 caractères d'où le choix de 16 caractères pour le Varchar, 3 caractères en plus pour une marge de sécurité. (Ce schéma de pensée est également appliqué à region, name et d'autres attributs de d'autres tables. Une marge d'erreur est considérée dans tous les cas)
+
+	- climate_id : Il a été décidé d'utiliser le type TINYINT qui utilise moins de mémoire que le type INT. La taille accordée par le type TINYINT est suffisante pour ce cas ci.
+
+	- hdi : Il a été décidé d'utiliser le type DECIMAL(1,3) car le chiffre est toujours compris entre 0 et 1 avec maximum 3 chiffres aprèsn la virgule.
+
+
+ENTITE Stat_Hospitalization :
+
+	- id : Il a été décidé de stocker l'id dans un SMALLINT car plus petit que 32000. Ainsi moins de bytes sont nécessaires.
+
+Réarrangement de Vaccinations.csv : Il a été décidé de tronqué les données "date" pour garder uniquement le jour, le mois et l'année, l'heure exacte a été écartée car pour un id on a jamais deux fois la même date.
+
+
