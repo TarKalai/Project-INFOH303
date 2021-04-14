@@ -26,3 +26,7 @@ Country et Producers :
                                                 (ligne 25) GIB;2021-01-10;Pfizer/BioNTech
                                                 IMN;2021-01-21;Pfizer/BioNTech
                                                 MMR;2021-01-26;Oxford/AstraZeneca (42)
+
+Country et Vaccines :
+    - Il a été relevé que Vaccines possède 8622 countries non présent dans country.
+    - Problème à discuter avec les assistants.
