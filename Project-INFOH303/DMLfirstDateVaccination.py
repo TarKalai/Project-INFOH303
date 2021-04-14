@@ -2,9 +2,12 @@ import psycopg2
 import csv
 
 path = "data_csv_files/country.csv"
-climateFile = "D:\\documents\\BA3 Polytechnique\\INFO-H303\\Projet_partie_2\\Project-INFOH303\\data_csv_files\\climate.csv"
+firstVaccFile = "C:\\Users\\takira\\Desktop\\ULB\\BA3-IRCI\\Q2\\Bases de données INFO-H303\\Projet\\Partie_2\\Project-INFOH303\\Project-INFOH303\\data_csv_files\\producers.csv"
 # mettre un path absolu
-list_of_climate = []
+
+list_of_firstVacc = []
+
+list_temp = []
 
 
 def open_folder_csv(file, list):
@@ -14,15 +17,19 @@ def open_folder_csv(file, list):
             list.append(line)
 
 
-open_folder_csv(climateFile, list_of_climate)
+open_folder_csv(firstVaccFile, list_of_firstVacc)
 
-list_of_climate.pop(0)
+#Retire le premier élément de la liste (titre des données)
+list_of_firstVacc.pop(0)
 
-for i in range(len(list_of_climate)):
-    list_of_climate[i][0] = int(list_of_climate[i][0])
+#Création d'une liste temporaire pour garder les 2 éléments intéressants
+for i in range(len(list_of_firstVacc)):
+    list_temp.append([list_of_firstVacc[i][1], list_of_firstVacc[i][0]])
 
-lst = [[1, 2], [3, 4], [5, 6]]
-tuples = tuple(tuple(x) for x in list_of_climate)
+
+
+tuples = tuple(tuple(x) for x in list_temp)
+
 print(tuples)
 
 
@@ -38,7 +45,7 @@ print("Database connected successfully")
 
 with con:
     cur = con.cursor()
-    query = "INSERT INTO Climate (id, description) VALUES (%s, %s)"
+    query = "UPDATE Country SET first_vaccination_date = %s WHERE iso_code = %s"
     cur.executemany(query, tuples)
     con.commit()
 

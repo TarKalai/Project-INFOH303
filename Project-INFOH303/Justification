@@ -20,3 +20,9 @@ ENTITE Stat_Hospitalization :
 Réarrangement de Vaccinations.csv : Il a été décidé de tronqué les données "date" pour garder uniquement le jour, le mois et l'année, l'heure exacte a été écartée car pour un id on a jamais deux fois la même date.
 
 
+Country et Producers :
+
+    - Il a été relevé que Producers possède : (ligne 8) BMU;2021-01-10;Pfizer/BioNTech
+                                                (ligne 25) GIB;2021-01-10;Pfizer/BioNTech
+                                                IMN;2021-01-21;Pfizer/BioNTech
+                                                MMR;2021-01-26;Oxford/AstraZeneca (42)
