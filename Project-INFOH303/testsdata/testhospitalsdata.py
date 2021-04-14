@@ -19,8 +19,8 @@ def start_project():
     for i in range(len(list_of_country)-1):
         if len(list_of_country[i + 1][4]) != 36:
             print("Huston, we have a problem")
-        #else:
-            #print(len(list_of_country[i+1][4]))
+        else:
+            print(len(list_of_country[i+1][4]))
 
 
 

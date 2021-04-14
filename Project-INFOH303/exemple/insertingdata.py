@@ -14,7 +14,7 @@ print("Database connected successfully")
 
 cur = conn.cursor()
 
-cur.execute("INSERT INTO Employe (ID, NAME, EMAIL) VALUES (2, 'John', 'John@mail')")
+cur.execute("""INSERT INTO Employe (ID, NAME, EMAIL) VALUES (2, 'John', 'John@mail')""")
 conn.commit()
 print("Data inserted Successfully")
 conn.close()
