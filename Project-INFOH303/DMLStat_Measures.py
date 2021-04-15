@@ -1,8 +1,9 @@
 import psycopg2
 import csv
-
-StatMeasuresFile = "D:\\ULB\\Projets\\Projet_INFO-H-303\\Project-INFOH303\\Project-INFOH303\\data_csv_files\\vaccinations.csv"
-CountryFile = "D:\\ULB\\Projets\\Projet_INFO-H-303\\Project-INFOH303\\Project-INFOH303\\data_csv_files\\country.csv"
+import os
+print(os.path.abspath(os.curdir))
+StatMeasuresFile = os.path.abspath(os.curdir) + "\\data_csv_files\\vaccinations.csv"
+CountryFile = os.path.abspath(os.curdir) + "\\data_csv_files\\country.csv"
 # mettre un path absolu
 
 list_of_Vacc = []
