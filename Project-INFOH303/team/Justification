@@ -30,3 +30,5 @@ Country et Producers :
 Country et Vaccines :
     - Il a été relevé que Vaccines possède 8622 countries non présent dans country.
     - Problème à discuter avec les assistants.
+
+Dans Stat_hospitalizations, on a modifié le type de la date pour avoir ANNEE-MOIS-JOUR partout dans la DB.
