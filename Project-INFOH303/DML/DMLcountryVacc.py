@@ -1,11 +1,11 @@
 import psycopg2
 import csv
 
-path = "data_csv_files/country.csv"
-firstVaccFile = "C:\\Users\\takira\\Desktop\\ULB\\BA3-IRCI\\Q2\\Bases de données INFO-H303\\Projet\\Partie_2\\Project-INFOH303\\Project-INFOH303\\data_csv_files\\producers.csv"
+path = "../data_csv_files/country.csv"
+countryVaccFile = "C:\\Users\\takira\\Desktop\\ULB\\BA3-IRCI\\Q2\\Bases de données INFO-H303\\Projet\\Partie_2\\Project-INFOH303\\Project-INFOH303\\data_csv_files\\producers.csv"
 # mettre un path absolu
 
-list_of_firstVacc = []
+list_of_Vacc = []
 
 list_temp = []
 
@@ -17,14 +17,16 @@ def open_folder_csv(file, list):
             list.append(line)
 
 
-open_folder_csv(firstVaccFile, list_of_firstVacc)
+open_folder_csv(countryVaccFile, list_of_Vacc)
 
 #Retire le premier élément de la liste (titre des données)
-list_of_firstVacc.pop(0)
+list_of_Vacc.pop(0)
 
 #Création d'une liste temporaire pour garder les 2 éléments intéressants
-for i in range(len(list_of_firstVacc)):
-    list_temp.append([list_of_firstVacc[i][1], list_of_firstVacc[i][0]])
+for i in range(len(list_of_Vacc)):
+    x = list_of_Vacc[i][2].split(", ")
+    for j in x :
+        list_temp.append([list_of_Vacc[i][0], j])
 
 
 
@@ -45,7 +47,7 @@ print("Database connected successfully")
 
 with con:
     cur = con.cursor()
-    query = "UPDATE Country SET first_vaccination_date = %s WHERE iso_code = %s"
+    query = "INSERT INTO CountryVacc (iso_code, vaccine_name) VALUES (%s, %s)"
     cur.executemany(query, tuples)
     con.commit()
 

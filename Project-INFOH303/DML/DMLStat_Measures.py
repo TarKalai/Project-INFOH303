@@ -4,7 +4,6 @@ import os
 print(os.path.abspath(os.curdir))
 StatMeasuresFile = os.path.abspath(os.curdir) + "\\data_csv_files\\vaccinations.csv"
 CountryFile = os.path.abspath(os.curdir) + "\\data_csv_files\\country.csv"
-# mettre un path absolu
 
 list_of_Vacc = []
 list_of_countries = []
@@ -43,17 +42,38 @@ list_of_countries.pop(0)
 
 for e in list_of_countries:
     list_cut.append(e[0])
-a = 0
+
+id = 1
 for i in list_of_Vacc:
     if i[0] in list_cut:
-        list_temp.append([i[0], isolate_date(i[1]), convert_to_int(i[2]), convert_to_int(i[3])])
-        a += 1
-    else:
-        print(i)
-print(len(list_of_Vacc)-a)
+        iso_code = i[0]
+        date = isolate_date(i[1])
+        tests = convert_to_int(i[2])
+        nbr_vaccinations = convert_to_int(i[3])
+        list_temp.append([id, date, tests, nbr_vaccinations, iso_code])
+        id += 1
 
 
 tuples = tuple(tuple(x) for x in list_temp)
+
+DB_NAME = "rdqxhttk"
+DB_USER = "rdqxhttk"
+DB_PASS = "iAs4oaszEn08NcQhuZNODLXpdqCid6yd"
+DB_HOST = "hattie.db.elephantsql.com"
+DB_PORT = "5432"
+
+con = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT)
+
+print("Database connected successfully")
+
+with con:
+    cur = con.cursor()
+    query = "INSERT INTO Stat_Measures (id, date, tests, nbr_vaccinations, iso_code) VALUES (%s, %s, %s, %s, %s)"
+    cur.executemany(query, tuples)
+    con.commit()
+
+print("Data inserted Successfully")
+con.close()
 
 #print(tuples)
 

@@ -67,7 +67,7 @@ center VARCHAR,
 service_phone VARCHAR
 ) INHERITS (People);
 
-CREATE TABLE Stat_Hospitalisation (
+CREATE TABLE Stat_Hospitalization (
 id SMALLINT PRIMARY KEY,
 date DATE NOT NULL,
 icu_patients INT NOT NULL,

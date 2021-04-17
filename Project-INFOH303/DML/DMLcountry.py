@@ -1,7 +1,7 @@
 import psycopg2
 import csv
 
-path = "data_csv_files/country.csv"
+path = "../data_csv_files/country.csv"
 countryFile = "D:\\documents\\BA3 Polytechnique\\INFO-H303\\Projet_partie_2\\Project-INFOH303\\data_csv_files\\country.csv"
 # mettre un path absolu
 list_of_country = []
