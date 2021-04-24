@@ -45,7 +45,7 @@ for e in list_of_countries:
 
 id = 1
 for i in list_of_Vacc:
-    if i[0] in list_cut:
+    if i[0] in list_cut: #filtrage des iso_code qui ne sont pas dans country
         iso_code = i[0]
         date = isolate_date(i[1])
         tests = convert_to_int(i[2])
