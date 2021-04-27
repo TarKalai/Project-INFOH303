@@ -2,9 +2,9 @@ import psycopg2
 import csv
 import os
 print(os.path.abspath(os.curdir))
-epidemologistFile = os.path.abspath(os.curdir) + "\\data_csv_files\\hospitals.csv"
+hospitalsFile = os.path.abspath(os.curdir) + "\\data_csv_files\\hospitals.csv"
 
-list_of_epidemiologist = []
+list_of_hospitals = []
 list_temp = []
 
 
@@ -45,14 +45,14 @@ def convert_to_date(date):
     temp_date += date[1]
     return temp_date
 
-open_folder_csv(epidemologistFile, list_of_epidemiologist, ',')
+open_folder_csv(hospitalsFile, list_of_hospitals, ',')
 
 
 # Retire le premier élément de la liste (titre des données)
-list_of_epidemiologist.pop(0)
+list_of_hospitals.pop(0)
 
 id = 1
-for i in list_of_epidemiologist:
+for i in list_of_hospitals:
     date = convert_to_date(i[1])
     iso_code = i[0]
     icu_patients = convert_to_int(i[2])
