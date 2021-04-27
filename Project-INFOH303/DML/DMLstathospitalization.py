@@ -14,6 +14,7 @@ def open_folder_csv(file, list, delim):
         for line in csv_reader:
             list.append(line)
 
+
 def isolate_date(date):
     name_of_table = ""
     b = 0
