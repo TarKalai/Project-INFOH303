@@ -16,10 +16,10 @@ print("Database connected successfully")
 
 cur = conn.cursor()
 
-cur.execute("""        
+cur.execute("""                      
             SELECT cv1.vaccine_name
             FROM CountryVacc cv1, CountryVacc cv2
-            WHERE cv1.vaccine_name = cv2.vaccine_name and cv1.iso_code = 'BEL' and cv2.iso_code = 'FRA'
+            WHERE cv1.vaccine_name = cv2.vaccine_name AND cv1.iso_code = 'BEL' AND cv2.iso_code = 'FRA'
             """)
 
 

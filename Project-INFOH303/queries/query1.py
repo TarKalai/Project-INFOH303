@@ -41,7 +41,7 @@ cur.execute("""
             SELECT iso_code
             FROM Stat_hospitalization 
             WHERE hosp_patients >= 5000
-            group by iso_code                       
+            GROUP BY iso_code                       
             """)
 
 rows = cur.fetchall()

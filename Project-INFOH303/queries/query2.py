@@ -21,15 +21,15 @@ print("Database connected successfully")
 cur = conn.cursor()
 
 cur.execute("""        
-            WITH tot_vacc_by_country (iso_code, tot_vaccinations) as (SELECT iso_code, SUM(nbr_vaccinations)
+            WITH TOT_VACC_BY_COUNTRY (iso_code, tot_vaccinations) AS (SELECT iso_code, SUM(nbr_vaccinations)
                                                             FROM Stat_Measures
                                                             WHERE nbr_vaccinations > 0 
-                                                            group by iso_code)  
+                                                            GROUP BY iso_code)  
             
             SELECT iso_code, tot_vaccinations
-            FROM tot_vacc_by_country
+            FROM TOT_VACC_BY_COUNTRY
 			WHERE tot_vaccinations = (SELECT MAX(tot_vaccinations)
-                                        FROM tot_vacc_by_country)                          
+                                        FROM TOT_VACC_BY_COUNTRY)                 
             """)
 
 rows = cur.fetchall()

@@ -1,9 +1,9 @@
 import csv
 import pkg_resources
-
+import os
 path = "data_csv_files/country.csv"
-climateFile = "D:\\documents\\BA3 Polytechnique\\INFO-H303\\Projet_partie_2\\Project-INFOH303\\data_csv_files\\climate.csv"
-#mettre un path absolu
+climateFile = os.path.abspath(os.curdir) + "data_csv_files\\climate.csv"
+
 
 def open_folder_csv(file, list):
     with open(file, "r") as csv_file:

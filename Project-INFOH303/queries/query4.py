@@ -16,10 +16,14 @@ print("Database connected successfully")
 
 cur = conn.cursor()
 
-cur.execute("""        
-            SELECT c.name, CONCAT(round(cast(cast(sh.hosp_patients*100 as float)/cast(c.population as float) as numeric),4),' %')
-            FROM Country c, Stat_Hospitalization sh
-            WHERE c.iso_code = sh.iso_code and sh.date = '2021-01-01'
+cur.execute("""    
+            WITH S (date, iso_code, hosp_patients) AS (SELECT date, iso_code, hosp_patients
+                                                       FROM Stat_Hospitalization),
+	             C (name, iso_code, population) AS (SELECT name, iso_code, population
+                                                    FROM Country)
+            SELECT c.name, CONCAT(ROUND(CAST(CAST(sh.hosp_patients*100 AS FLOAT)/CAST(c.population AS FLOAT) AS NUMERIC), 4), ' %')
+            FROM C c, S sh
+            WHERE c.iso_code = sh.iso_code AND sh.date = '2021-01-01'
             """)
 
 

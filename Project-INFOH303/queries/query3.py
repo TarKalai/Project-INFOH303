@@ -21,14 +21,18 @@ print("Database connected successfully")
 cur = conn.cursor()
 
 cur.execute("""        
-            WITH vacc_name (vaccine_name) as (SELECT vaccine_name
+            WITH VACC_NAME (vaccine_name) AS (SELECT vaccine_name
                                                 FROM CountryVacc 
-                                                group by vaccine_name
-                                                order by vaccine_name)
+                                                GROUP BY vaccine_name
+                                                ORDER BY vaccine_name),
+                 C (name, iso_code) AS (SELECT name, iso_code
+                                        FROM Country)
+                                        
             SELECT vaccine_name, ARRAY (SELECT c.name
-                                        FROM CountryVacc cv, Country c
-                                        WHERE cv.vaccine_name = vn.vaccine_name and c.iso_code = cv.iso_code)
-            FROM vacc_name vn                
+                                        FROM CountryVacc cv, C c
+                                        WHERE cv.vaccine_name = vn.vaccine_name AND c.iso_code = cv.iso_code
+                                        ORDER BY name)
+            FROM VACC_NAME vn                
 
             """)
 

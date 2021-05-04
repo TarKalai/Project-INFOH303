@@ -23,10 +23,15 @@ print("Database connected successfully")
 
 cur = conn.cursor()
 
-cur.execute("""        
-            SELECT sh2.iso_code, cast(sh2.date as varchar), sh2.hosp_patients - sh1.hosp_patients
-            FROM Stat_Hospitalization sh1, Stat_Hospitalization sh2
-            WHERE sh1.date = sh2.date-1 and sh1.iso_code = sh2.iso_code
+cur.execute("""
+            WITH SH1 (iso_code, date, hosp_patients) AS (SELECT iso_code, date, hosp_patients
+                                                         FROM Stat_Hospitalization), 
+                 SH2 (iso_code, date, hosp_patients) AS (SELECT *
+                                                         FROM SH1)       
+            SELECT sh2.iso_code, CAST(sh2.date AS VARCHAR), sh2.hosp_patients - sh1.hosp_patients
+            FROM SH1 sh1, SH2 sh2
+            WHERE sh1.date = sh2.date-1 AND sh1.iso_code = sh2.iso_code
+            ORDER BY iso_code, date
             """)
 
 
