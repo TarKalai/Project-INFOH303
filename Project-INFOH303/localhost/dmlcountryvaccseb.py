@@ -1,12 +1,15 @@
 import psycopg2
 import csv
+import os
+from pathlib import Path
+path = Path(os.path.abspath(os.curdir)).parent.absolute()
 
-path = "../data_csv_files/country.csv"
-countryVaccFile = "C:\\Users\\takira\\Desktop\\ULB\\BA3-IRCI\\Q2\\Bases de données INFO-H303\\Projet\\Partie_2\\Project-INFOH303\\Project-INFOH303\\data_csv_files\\producers.csv"
-# mettre un path absolu
+countryVaccFile = str(path) + '/data_csv_files/producers.csv'
+countryFile = str(path) + '/data_csv_files/country.csv'
 
 list_of_Vacc = []
-
+list_of_country = []
+list_of_iso = []
 list_temp = []
 
 
@@ -18,15 +21,22 @@ def open_folder_csv(file, list):
 
 
 open_folder_csv(countryVaccFile, list_of_Vacc)
+open_folder_csv(countryFile, list_of_country)
 
 #Retire le premier élément de la liste (titre des données)
 list_of_Vacc.pop(0)
+list_of_country.pop(0)
 
 #Création d'une liste temporaire pour garder les 2 éléments intéressants
+for i in range(len(list_of_country)):
+    list_of_iso.append(list_of_country[i][0])
+
+
 for i in range(len(list_of_Vacc)):
-    x = list_of_Vacc[i][2].split(", ")
-    for j in x:
-        list_temp.append([list_of_Vacc[i][0], j])
+    if list_of_Vacc[i][0] in list_of_iso:
+        x = list_of_Vacc[i][2].split(", ")
+        for j in x:
+            list_temp.append([list_of_Vacc[i][0], j])
 
 
 
@@ -35,10 +45,10 @@ tuples = tuple(tuple(x) for x in list_temp)
 print(tuples)
 
 
-DB_NAME = "rdqxhttk"
-DB_USER = "rdqxhttk"
-DB_PASS = "iAs4oaszEn08NcQhuZNODLXpdqCid6yd"
-DB_HOST = "hattie.db.elephantsql.com"
+DB_NAME = "INFO-H303"
+DB_USER = "postgres"
+DB_PASS = "root"
+DB_HOST = "localhost"
 DB_PORT = "5432"
 
 con = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT)
