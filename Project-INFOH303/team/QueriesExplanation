@@ -1,0 +1,7 @@
+
+
+Requête 1 : Sélectionnez les pays qui, au même moment, ont eu au moins 5000 personnes hospitalisées
+            (hosp_patients); Chaque pays doit apparaître une seule fois au maximum dans le résultat de votre requête.
+
+Implémentation : En premier lieu, la table Stat_hospitalization de manière à ne garder que les données
+qui nous sont nécessaires. Cela a été fait en utilisant : "WITH AS".
