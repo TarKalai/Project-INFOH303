@@ -10,7 +10,7 @@ myLabelUser = Label(root, text="Username : ")
 myLabelPassword = Label(root, text="Password : ")
 myLabelPassword.place(x=400)
 EntryUser = Entry(root)
-EntryPassword = Entry(root)
+EntryPassword = Entry(root, show="*")
 EntryPassword.place(x=400)
 
 userDico = {'tarik': "1", 'seb': "2", 'david': "3"}
