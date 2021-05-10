@@ -40,8 +40,8 @@ open_folder_csv(epidemologistFile, list_of_epidemiologist, ',')
 list_of_epidemiologist.pop(0)
 
 for i in list_of_epidemiologist:
-    if [i[-1], None] not in list_temp:
-        list_temp.append([i[-1], None])
+    if [i[-1]] not in list_temp:
+        list_temp.append([i[-1]])
 
 print(list_temp)
 tuples = tuple(tuple(x) for x in list_temp)
@@ -59,7 +59,7 @@ print("Database connected successfully")
 
 with con:
     cur = con.cursor()
-    query = "INSERT INTO People (user_source, password) VALUES (%s, %s)"
+    query = "INSERT INTO People (user_source) VALUES (%s)"
     cur.executemany(query, tuples)
     con.commit()
 

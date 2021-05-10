@@ -1,14 +1,30 @@
 from tkinter import *
+import psycopg2
 import queries
 
+DB_NAME = "INFO-H303"
+DB_USER = "postgres"
+DB_PASS = "root"
+DB_HOST = "localhost"
+DB_PORT = "5432"
 
-def executeQuery(text):
-    print(text)
+
+def executeQuery(variable):
+    conn = psycopg2.connect(database=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST, port=DB_PORT)
+    print("Database connected successfully")
+    cur = conn.cursor()
+    cur.execute(variable)
+    rows = cur.fetchall()
+    for data in rows:
+        print(data)
+    print(len(rows))
+    print("Data selected Successfully")
+    conn.close()
 
 
 def goToEpidemiologist():
     epidemiologistPage = Tk()
-    epidemiologistPage.geometry("800x600")
+    epidemiologistPage.geometry("720x480")
     epidemiologistPage.title("Status : Epidemiologist")
 
     # Button first query
@@ -60,4 +76,5 @@ def goToEpidemiologist():
                          bg='light grey',
                          command=lambda: executeQuery(EntryQuery.get()))
     queryButton.grid(row=1, column=5)
+
     epidemiologistPage.mainloop()

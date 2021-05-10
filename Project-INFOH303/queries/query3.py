@@ -30,7 +30,7 @@ cur = conn.cursor()
 
 cur.execute("""        
             WITH VACC_NAME (vaccine_name) AS (SELECT vaccine_name
-                                                FROM CountryVacc 
+                                                FROM CountryVacc
                                                 GROUP BY vaccine_name
                                                 ORDER BY vaccine_name),
                  C (name, iso_code) AS (SELECT name, iso_code
