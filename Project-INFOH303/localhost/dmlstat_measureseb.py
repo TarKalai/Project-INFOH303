@@ -48,15 +48,17 @@ for e in list_of_countries:
 id = 1
 for i in list_of_Vacc:
     if i[0] in list_cut: #filtrage des iso_code qui ne sont pas dans country
-        iso_code = i[0]
-        date = isolate_date(i[1])
         tests = convert_to_int(i[2])
         nbr_vaccinations = convert_to_int(i[3])
-        list_temp.append([id, date, tests, nbr_vaccinations, iso_code])
-        id += 1
+        if tests is not None or nbr_vaccinations is not None:  # filtrage des valeur ou les deux sont null
+            iso_code = i[0]
+            date = isolate_date(i[1])
+            list_temp.append([id, date, tests, nbr_vaccinations, iso_code])
+            id += 1
 
 
 tuples = tuple(tuple(x) for x in list_temp)
+print(len(list_temp))
 
 DB_NAME = "INFO-H303"
 DB_USER = "postgres"
